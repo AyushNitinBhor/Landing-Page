@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Golden Spoon Restaurant</title>
+
+    <!-- GOOGLE FONT -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background:#fff;
+            color:#333;
+         }
+
+        /* NAVBAR */
+
+        header{
+            width:100%;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:1000;
+        }
+
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:18px 8%;
+            background:rgba(0,0,0,0.75);
+            backdrop-filter:blur(10px);
+            box-shadow:0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .logo{
+            font-size:34px;
+            font-weight:700;
+            color:#6e97d1;
+            letter-spacing:1px;
+        }
+
+        .nav-links{
+            display:flex;
+            list-style:none;
+            gap:35px;
+        }
+
+        .nav-links a{
+            text-decoration:none;
+            color:white;
+            font-size:16px;
+            font-weight:500;
+            transition:0.1s;
+            position:relative;
+        }
+
+        .nav-links a::after{
+            content:'';
+            position:absolute;
+            width:0%;
+            height:2px;
+            background:#6e97d1;
+            left:0;
+            bottom:-6px;
+            transition:0.6s;
+        }
+
+        .nav-links a:hover::after{
+            width:100%;
+        }
+
+        .nav-links a:hover{
+            color:#6e97d1;
+        }
+
+        .nav-btn{
+            text-decoration:none;
+            background:#6e97d1;
+            color:black;
+            padding:12px 24px;
+            border-radius:40px;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .nav-btn:hover{
+            background:white;
+            transform:scale(1.05);
+        }
+
+        /* HERO SECTION */
+
+        .hero{
+            width:100%;
+            height:100vh;
+
+            background:
+            linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),
+            url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop');
+
+            background-size:cover;
+            background-position:center;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:0 10%;
+        }
+
+        .hero-content{
+            max-width:850px;
+            color:white;
+            animation:fadeIn 1.5s ease;
+        }
+
+        .hero-content h1{
+            font-size:70px;
+            margin-bottom:20px;
+            line-height:1.2;
+        }
+
+        .hero-content p{
+            font-size:20px;
+            line-height:1.8;
+            margin-bottom:35px;
+        }
+
+        .hero-buttons{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .primary-btn,
+        .secondary-btn{
+            text-decoration:none;
+            padding:15px 35px;
+            border-radius:40px;
+            font-weight:600;
+            transition:0.3s;
+            font-size:16px;
+        }
+
+        .primary-btn{
+            background:#6e97d1;
+            color:black;
+        }
+
+        .primary-btn:hover{
+            background:white;
+            transform:translateY(-5px);
+        }
+
+        .secondary-btn{
+            border:2px solid white;
+            color:white;
+        }
+
+        .secondary-btn:hover{
+            background:white;
+            color:black;
+            transform:translateY(-5px);
+        }
+
+        /* FEATURES */
+
+        .features{
+            padding:100px 8%;
+            display:flex;
+            justify-content:center;
+            gap:30px;
+            flex-wrap:wrap;
+            background:#f9f9f9;
+        }
+
+        .feature-card{
+            background:rgba(9, 9, 9, 0.093);
+            width:320px;
+            padding:40px 30px;
+            border-radius:20px;
+            text-align:center;
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+            transition:0.4s;
+        }
+
+        .feature-card:hover{
+            transform:translateY(-12px);
+        }
+
+        .feature-card h2{
+            margin-bottom:15px;
+            color:#6e97d1;
+            font-size:28px;
+        }
+
+        .feature-card p{
+            line-height:1.8;
+            color:#555;
+        }
+
+        /* MENU */
+
+        .menu{
+            padding:110px 8%;
+        }
+
+        .section-title{
+            text-align:center;
+            font-size:50px;
+            margin-bottom:60px;
+        }
+
+        .menu-container{
+            display:flex;
+            justify-content:center;
+            gap:35px;
+            flex-wrap:wrap;
+        }
+
+        .menu-card{
+            width:340px;
+            background:white;
+            border-radius:25px;
+            overflow:hidden;
+            box-shadow:0 10px 25px rgba(0,0,0,0.1);
+            transition:0.4s;
+        }
+
+        .menu-card:hover{
+            transform:translateY(-10px);
+        }
+
+        .menu-card img{
+            width:100%;
+            height:240px;
+            object-fit:cover;
+        }
+
+        .menu-content{
+            padding:25px;
+        }
+
+        .menu-content h2{
+            margin-bottom:10px;
+            font-size:28px;
+        }
+
+        .menu-content p{
+            margin-bottom:18px;
+            line-height:1.7;
+            color:#555;
+        }
+
+        .price{
+            color:#ff9900;
+            font-size:28px;
+            font-weight:700;
+        }
+
+        /* ABOUT */
+
+        .about{
+            padding:110px 8%;
+            background:#f8f8f8;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:70px;
+            flex-wrap:wrap;
+        }
+
+        .about-text{
+            flex:1;
+            min-width:320px;
+        }
+
+        .about-text h1{
+            font-size:50px;
+            margin-bottom:20px;
+        }
+
+        .about-text p{
+            line-height:2;
+            font-size:18px;
+            color:#555;
+        }
+
+        .about-image{
+            flex:1;
+            min-width:320px;
+        }
+
+        .about-image img{
+            width:100%;
+            border-radius:25px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        /* CONTACT */
+
+        .contact{
+            padding:110px 8%;
+            text-align:center;
+        }
+
+        .contact h1{
+            font-size:50px;
+            margin-bottom:25px;
+        }
+
+        .contact p{
+            margin:15px 0;
+            font-size:20px;
+            color:#555;
+        }
+
+        /* FOOTER */
+
+        footer{
+            background:#111;
+            color:white;
+            text-align:center;
+            padding:35px 20px;
+        }
+
+        footer h2{
+            color:#6e97d1;
+            margin-bottom:12px;
+            font-size:30px;
+        }
+
+        footer p{
+            color:#ccc;
+        }
+
+        /* ANIMATION */
+
+        @keyframes fadeIn{
+
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:900px){
+
+            .navbar{
+                flex-direction:column;
+                gap:20px;
+            }
+
+            .hero-content h1{
+                font-size:50px;
+            }
+
+            .hero-buttons{
+                flex-direction:column;
+                align-items:center;
+            }
+
+            .about{
+                flex-direction:column;
+            }
+
+        }
+
+        @media(max-width:600px){
+
+            .hero-content h1{
+                font-size:38px;
+            }
+
+            .hero-content p{
+                font-size:16px;
+            }
+
+            .section-title{
+                font-size:38px;
+            }
+
+            .about-text h1{
+                font-size:38px;
+            }
+
+            .contact h1{
+                font-size:38px;
+            }
+
+            .nav-links{
+                gap:15px;
+                flex-wrap:wrap;
+                justify-content:center;
+            }
+
+            .menu-card{
+                width:100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                Golden Spoon
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="#home">Home</a></li>
+
+                <li><a href="#features">Features</a></li>
+
+                <li><a href="#menu">Menu</a></li>
+
+                <li><a href="#about">About</a></li>
+
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+
+            <a href="#contact" class="nav-btn">
+                Book Table
+            </a>
+
+        </nav>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Delicious Food For Every Mood
+            </h1>
+
+            <p>
+                Experience premium quality food, fresh ingredients,
+                and unforgettable taste at Golden Spoon Restaurant.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#menu" class="primary-btn">
+                    Explore Menu
+                </a>
+
+                <a href="#contact" class="secondary-btn">
+                    Order Now
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FEATURES -->
+
+    <section class="features" id="features">
+
+        <div class="feature-card">
+
+            <h2>Fresh Ingredients</h2>
+
+            <p>
+                We use only fresh vegetables, premium spices,
+                and high-quality ingredients for every meal.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h2>Best Chefs</h2>
+
+            <p>
+                Professional chefs preparing delicious food
+                with beautiful presentation and rich flavor.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h2>Fast Delivery</h2>
+
+            <p>
+                Enjoy hot and delicious food delivered
+                quickly to your doorstep.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- MENU -->
+
+    <section class="menu" id="menu">
+
+        <h1 class="section-title">
+            Popular Dishes
+        </h1>
+
+        <div class="menu-container">
+
+            <div class="menu-card">
+
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1000&auto=format&fit=crop">
+
+                <div class="menu-content">
+
+                    <h2>Cheese Pizza</h2>
+
+                    <p>
+                        Loaded with extra cheese and fresh toppings.
+                    </p>
+
+                    <div class="price">
+                        ₹299
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="menu-card">
+
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1000&auto=format&fit=crop">
+
+                <div class="menu-content">
+
+                    <h2>Classic Burger</h2>
+
+                    <p>
+                        Juicy grilled burger served with crispy fries.
+                    </p>
+
+                    <div class="price">
+                        ₹199
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="menu-card">
+
+                <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=1000&auto=format&fit=crop">
+
+                <div class="menu-content">
+
+                    <h2>Italian Pasta</h2>
+
+                    <p>
+                        Creamy white sauce pasta with authentic Italian flavor.
+                    </p>
+
+                    <div class="price">
+                        ₹249
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="menu-card">
+
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1000&auto=format&fit=crop">
+
+                <div class="menu-content">
+
+                    <h2>Chicken Steak</h2>
+
+                    <p>
+                        Grilled chicken steak served with vegetables and sauce.
+                    </p>
+
+                    <div class="price">
+                        ₹399
+                    </div>
+
+                </div>
+
+            </div>
+
+<!-- ITEM 5 -->
+
+                <div class="menu-card">
+
+                    <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1000&auto=format&fit=crop">
+
+                    <div class="menu-content">
+
+                        <h2>French Fries</h2>
+
+                        <p>
+                            Crispy golden fries served with spicy tomato ketchup.
+                        </p>
+
+                        <div class="price">
+                            ₹149
+                        </div>
+
+                    </div>
+
+                </div>
+
+<!-- ITEM 6 -->
+
+                <div class="menu-card">
+
+                    <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?q=80&w=1000&auto=format&fit=crop">
+
+                    <div class="menu-content">
+
+                        <h2>Chicken Biryani</h2>
+
+                        <p>
+                            Aromatic biryani cooked with rich spices and chicken.
+                        </p>
+
+                        <div class="price">
+                            ₹349
+                        </div>
+
+                    </div>
+
+                </div>
+
+<!-- ITEM 7 -->
+
+                <div class="menu-card">
+
+                    <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?q=80&w=1000&auto=format&fit=crop">
+
+                    <div class="menu-content">
+
+                        <h2>Fresh Salad</h2>
+
+                        <p>
+                            Healthy vegetable salad with fresh dressing and herbs.
+                        </p>
+
+                        <div class="price">
+                            ₹179
+                        </div>
+
+                    </div>
+
+                </div>
+
+<!-- ITEM 8 -->
+
+                <div class="menu-card">
+
+                    <img src="https://imgs.search.brave.com/_4gqc6YBkfDhquCGN_k6f4BBgLZjMR6gRCUZy8RQSCs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE0/NzUwOTAxNjk3Njct/NDBlZDhkMThmNjdk/P2ZtPWpwZyZxPTYw/Jnc9MzAwMCZpeGxp/Yj1yYi00LjEuMCZp/eGlkPU0zd3hNakEz/ZkRCOE1IeHpaV0Z5/WTJoOE1ueDhaM0pw/Ykd4bFpDVXlNSE5o/Ym1SM2FXTm9mR1Z1/ZkRCOGZEQjhmSHd3">
+
+                    <div class="menu-content">
+
+                        <h2>Sandwich</h2>
+
+                        <p>
+                            Toasted sandwich loaded with vegetables and cheese.
+                        </p>
+
+                        <div class="price">
+                            ₹159
+                        </div>
+
+                    </div>
+
+                </div>
+
+<!-- ITEM 9 -->
+
+                <div class="menu-card">
+
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1000&auto=format&fit=crop">
+
+                    <div class="menu-content">
+
+                        <h2>Cold Coffee</h2>
+
+                        <p>
+                            Chilled creamy cold coffee topped with chocolate syrup.
+                        </p>
+
+                        <div class="price">
+                            ₹129
+                        </div>
+
+                    </div>
+
+                </div>
+
+<!-- ITEM 10 -->
+
+                <div class="menu-card">
+
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1000&auto=format&fit=crop">
+
+                    <div class="menu-content">
+
+                        <h2>Chocolate Cake</h2>
+
+                        <p>
+                            Soft chocolate cake layered with rich creamy frosting.
+                        </p>
+
+                        <div class="price">
+                            ₹219
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+        <div class="about-text">
+
+            <h1>
+                About Golden Spoon
+            </h1>
+
+            <p>
+                Golden Spoon Restaurant is known for delivering
+                premium quality food and exceptional customer service.
+                We focus on creating memorable dining experiences
+                with a modern atmosphere and delicious meals.
+            </p>
+
+        </div>
+
+        <div class="about-image">
+
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop">
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="contact" id="contact">
+
+        <h1>
+            Contact Us
+        </h1>
+
+        <p>Email: goldenspoon@gmail.com</p>
+
+        <p>Phone: +91 9503048727</p>
+
+        <p>Location: Pune, Maharashtra</p>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h2>
+            Golden Spoon Restaurant
+        </h2>
+
+        <p>
+             2026 All Rights Reserved
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
